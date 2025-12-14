@@ -1,0 +1,22 @@
+I've created a complete Java implementation of the Depth-First Search algorithm! This implementation includes:
+
+**Core DFS Methods:**
+- `dfsRecursive()` - Classic recursive DFS traversal
+- `dfsIterative()` - Iterative DFS using an explicit stack
+
+**Practical Applications:**
+- `findPath()` - Find a path between two nodes using DFS
+- `hasCycle()` - Detect if the graph contains a cycle
+- `countConnectedComponents()` - Count disconnected components in the graph
+- `nodesAtDepth()` - Find all nodes at a specific depth from a start node
+
+**Key Implementation Details:**
+
+1. **Adjacency List Representation**: The graph uses an array of LinkedLists for efficient neighbor access
+2. **Visited Tracking**: Boolean arrays prevent revisiting nodes
+3. **Backtracking**: The path-finding method demonstrates backtracking by removing nodes when dead ends are reached
+4. **Cycle Detection**: Uses parent tracking to distinguish back edges from tree edges
+
+The main method includes comprehensive examples showing all the different DFS operations in action. You can run this code directly to see how DFS explores the graph depth-first, always going as deep as possible before backtracking!
+
+Would you like me to explain any specific part of the implementation in more detail?

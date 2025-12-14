@@ -1,0 +1,97 @@
+Below is a **clean, complete, and idiomatic Java implementation of Depth-First Search (DFS)**.
+It includes:
+
+* A `Graph` class implemented with an adjacency list
+* A recursive DFS method
+* A small demo in `main`
+
+---
+
+# ✅ Java Implementation of Depth-First Search (DFS)
+
+```java
+import java.util.*;
+
+public class Graph {
+    private final int numVertices;
+    private final List<List<Integer>> adjacencyList;
+
+    public Graph(int numVertices) {
+        this.numVertices = numVertices;
+        adjacencyList = new ArrayList<>(numVertices);
+
+        for (int i = 0; i < numVertices; i++) {
+            adjacencyList.add(new ArrayList<>());
+        }
+    }
+
+    // Add an edge (undirected example; use one direction for directed graphs)
+    public void addEdge(int src, int dest) {
+        adjacencyList.get(src).add(dest);
+        adjacencyList.get(dest).add(src); // remove this line for directed graph
+    }
+
+    // Public DFS method
+    public void dfs(int start) {
+        boolean[] visited = new boolean[numVertices];
+        System.out.print("DFS starting at " + start + ": ");
+        dfsRecursive(start, visited);
+        System.out.println();
+    }
+
+    // Internal recursive DFS
+    private void dfsRecursive(int vertex, boolean[] visited) {
+        visited[vertex] = true;
+        System.out.print(vertex + " ");
+
+        for (int neighbor : adjacencyList.get(vertex)) {
+            if (!visited[neighbor]) {
+                dfsRecursive(neighbor, visited);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph graph = new Graph(6);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(1, 4);
+        graph.addEdge(2, 5);
+
+        graph.dfs(0);
+    }
+}
+```
+
+---
+
+# �� What This Code Does
+
+* Creates a graph with 6 vertices (0–5)
+* Adds edges to form a small structure:
+
+  ```
+  0: [1, 2]
+  1: [3, 4]
+  2: [5]
+  ```
+* Runs DFS starting from node **0**
+
+**Expected output:**
+
+```
+DFS starting at 0: 0 1 3 4 2 5
+```
+
+(The exact order may vary based on adjacency list order.)
+
+---
+
+If you'd like, I can also provide:
+
+* An **iterative** DFS version using a stack
+* A version that tracks **visit order in a list**
+* A **graph visualization**
+* **DFS for trees**, or for **detecting cycles**, **topological sort**, etc.

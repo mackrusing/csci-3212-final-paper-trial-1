@@ -1,0 +1,88 @@
+I'd be happy to explain Depth-First Search (DFS) to you!
+
+## What is Depth-First Search?
+
+Depth-First Search is a fundamental graph traversal algorithm that explores a graph by going as deep as possible along each branch before backtracking. Think of it like exploring a maze by always taking the first unexplored path you see and going as far as you can down that path before turning back.
+
+## How DFS Works
+
+The algorithm starts at a source node and explores as far as possible along each branch before backtracking. It uses a **stack** data structure (either explicitly or implicitly through recursion) to keep track of which nodes to visit next. This is the key difference from BFS, which uses a queue and explores level by level.
+
+The process follows these steps:
+
+1. Start at the initial node and mark it as visited
+2. Explore an unvisited neighbor of the current node
+3. Recursively apply DFS to that neighbor (go deeper)
+4. When no unvisited neighbors remain, backtrack to the previous node
+5. Continue until all reachable nodes are visited
+
+## Key Characteristics
+
+**Time Complexity:** O(V + E) where V is the number of vertices and E is the number of edges. You visit each vertex once and examine each edge once.
+
+**Space Complexity:** O(V) for the visited array and the recursion stack (or explicit stack). In the worst case (a linear graph), the stack depth can be V.
+
+**Traversal Pattern:** DFS goes deep before going wide, creating a vertical exploration pattern rather than BFS's horizontal layer-by-layer approach.
+
+## Common Applications
+
+- Detecting cycles in graphs
+- Topological sorting of directed acyclic graphs
+- Finding connected components
+- Solving maze and puzzle problems
+- Pathfinding (though not guaranteed to find shortest path)
+- Detecting strongly connected components
+
+## Pseudocode
+
+Here's the recursive implementation:
+
+```
+function DFS(graph, startNode):
+    create a visited set to track visited nodes
+    call DFS_Recursive(startNode, visited, graph)
+
+function DFS_Recursive(node, visited, graph):
+    mark node as visited
+    process node (print, store, etc.)
+    
+    for each neighbor in graph.adjacentNodes(node):
+        if neighbor is not in visited:
+            DFS_Recursive(neighbor, visited, graph)
+```
+
+And here's the iterative implementation using an explicit stack:
+
+```
+function DFS_Iterative(graph, startNode):
+    create a visited set
+    create an empty stack
+    
+    push startNode onto stack
+    
+    while stack is not empty:
+        current = pop from stack
+        
+        if current is not in visited:
+            mark current as visited
+            process current
+            
+            for each neighbor in graph.adjacentNodes(current):
+                if neighbor is not in visited:
+                    push neighbor onto stack
+```
+
+## Recursive vs Iterative
+
+The **recursive version** is more elegant and natural to understand—it mirrors the conceptual idea of exploring deeply. However, it can cause stack overflow for very deep graphs.
+
+The **iterative version** gives you more control and avoids stack overflow issues by using an explicit stack data structure instead of the call stack.
+
+## DFS vs BFS Comparison
+
+- **DFS** uses a stack (LIFO - Last In First Out), while **BFS** uses a queue (FIFO - First In First Out)
+- **DFS** explores depth-first, **BFS** explores breadth-first
+- **BFS** finds shortest paths in unweighted graphs, **DFS** does not guarantee shortest paths
+- **DFS** generally uses less memory for wide, shallow graphs; **BFS** uses less memory for narrow, deep graphs
+
+Would you like me to clarify any part of the algorithm or see how it performs on a specific example graph?

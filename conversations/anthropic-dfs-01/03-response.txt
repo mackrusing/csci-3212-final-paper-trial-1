@@ -1,0 +1,15 @@
+Perfect! I've created an interactive visualization that shows exactly how DFS traverses through a graph. 
+
+**Key things to observe as you step through:**
+
+1. **Stack Behavior (LIFO)**: Notice how DFS uses a stack that operates on Last In, First Out principle. The most recently added node is always processed first.
+
+2. **Depth-First Pattern**: Watch how the algorithm goes as deep as possible down one branch (0 → 1 → 3, then backtracks to explore 1 → 4 → 7) before moving to other branches.
+
+3. **Visit Order**: The final traversal order will be something like: **0 → 1 → 3 → 4 → 7 → 2 → 5 → 6 → 8**
+
+This demonstrates the "go deep first" nature of DFS - it exhaustively explores one path before backtracking to try another path.
+
+**Compare this mentally to BFS** (which would visit: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8, exploring level by level). DFS dives deep, while BFS spreads wide!
+
+Click "Play" to watch the animation, or use "Next" to step through at your own pace. Notice how the stack grows and shrinks as we explore deeper and backtrack.

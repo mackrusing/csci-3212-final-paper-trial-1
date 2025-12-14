@@ -1,0 +1,119 @@
+Below is a clear, comprehensive explanation of **Depth-First Search (DFS)**, followed by concise **pseudocode** (not actual code), as you requested.
+
+---
+
+# �� Depth-First Search (DFS): Comprehensive Explanation
+
+**Depth-First Search (DFS)** is a fundamental graph-traversal algorithm used to explore all vertices and edges of a graph. Unlike **Breadth-First Search (BFS)**, which explores level by level, **DFS dives as deep as possible along a path before backtracking**.
+
+DFS works on both:
+
+* **Directed and undirected graphs**
+* **Connected and disconnected graphs**
+
+It can also be applied to:
+
+* **Tree traversals** (e.g., preorder, inorder, postorder)
+* **Cycle detection**
+* **Topological sorting**
+* **Pathfinding**
+* **Finding connected components**
+
+---
+
+## �� Core Idea
+
+1. Start at a chosen source vertex.
+2. Mark the vertex as **visited**.
+3. Recursively or iteratively:
+
+   * Visit an **unvisited neighbor**.
+   * Continue deeper until no unvisited neighbors remain.
+4. **Backtrack** to the previous vertex and repeat.
+
+DFS can be implemented with:
+
+* **Recursion** (simplest, mirrors definition)
+* **An explicit stack** (iterative)
+
+---
+
+## �� Key Properties
+
+### **Traversal Order**
+
+DFS produces a traversal order based on depth preference. Because of backtracking, the order depends on:
+
+* The starting node.
+* The order in which neighbors are explored.
+
+### **Time Complexity**
+
+* **O(V + E)** for adjacency-list graphs
+* **O(V²)** for adjacency-matrix graphs
+
+### **Space Complexity**
+
+* **O(V)** for recursion stack / explicit stack
+* Additional **O(V)** for visited array
+
+### **Graph Requirements**
+
+To avoid infinite loops (especially in cyclic graphs), DFS must track **visited** nodes.
+
+---
+
+# �� Pseudocode for DFS (Recursive)
+
+```
+DFS(graph, start):
+    create empty set visited
+    call DFS-Visit(start, graph, visited)
+
+
+DFS-Visit(vertex, graph, visited):
+    mark vertex as visited
+    process(vertex)         // optional action, e.g., print
+
+    for each neighbor in graph[vertex]:
+        if neighbor not in visited:
+            DFS-Visit(neighbor, graph, visited)
+```
+
+---
+
+# �� Pseudocode for DFS (Iterative Using Stack)
+
+```
+DFS(graph, start):
+    create empty set visited
+    create an empty stack
+    push start onto stack
+
+    while stack is not empty:
+        vertex = pop from stack
+
+        if vertex not in visited:
+            mark vertex as visited
+            process(vertex)       // optional
+
+            for each neighbor in graph[vertex] in reverse order:
+                push neighbor onto stack
+```
+
+*(Reverse order is used to preserve typical left-to-right traversal, but it is optional.)*
+
+---
+
+# ✔ Summary
+
+DFS explores a graph **deeply before widely**, using recursion or a stack. It is efficient, simple, and a building block for many more advanced algorithms.
+
+If you'd like, I can also provide:
+
+* A detailed example DFS traversal order
+* Visual diagrams
+* Java, Python, or C++ implementations
+* DFS variations such as topological sort or cycle detection
+
+Just let me know!

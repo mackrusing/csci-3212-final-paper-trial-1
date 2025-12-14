@@ -1,0 +1,62 @@
+# Breadth-First Search (BFS) Algorithm
+
+Breadth-first search is a fundamental graph traversal algorithm that explores a graph level by level, visiting all neighbors of a node before moving on to their neighbors. Think of it like ripples spreading outward in a pond—you explore all nodes at distance 1 from the starting point, then all nodes at distance 2, then distance 3, and so on.
+
+## How BFS Works
+
+BFS uses a queue data structure (first-in, first-out) to keep track of which nodes to visit next. The algorithm starts at a source node, marks it as visited, and adds it to the queue. Then it repeatedly removes a node from the front of the queue, examines all its unvisited neighbors, marks them as visited, and adds them to the back of the queue. This process continues until the queue is empty.
+
+The key insight is that the queue maintains the order of exploration by distance from the source. When you add all neighbors of a node at distance *d* to the queue, they'll all be processed before you start processing any nodes at distance *d+1*, because nodes at distance *d+1* can only be added after processing nodes at distance *d*.
+
+## Applications
+
+BFS is particularly useful for several important problems. It finds the shortest path between two nodes in an unweighted graph, since it's guaranteed to reach the destination via the minimum number of edges. It can determine if a graph is connected by checking whether all nodes are reachable from a starting point. BFS is also used in social network analysis to find connections within a certain degree of separation, in web crawlers to systematically explore websites, and in solving puzzles like finding the shortest solution to a Rubik's cube.
+
+## Time and Space Complexity
+
+For a graph with V vertices and E edges, BFS runs in O(V + E) time. You visit each vertex once and examine each edge once (or twice for undirected graphs). The space complexity is O(V) because in the worst case, the queue might contain all vertices at the same level, and you need to track which vertices have been visited.
+
+## Pseudocode
+
+```
+BFS(graph, start_node):
+    create empty queue Q
+    create empty set visited
+    
+    add start_node to visited
+    enqueue start_node into Q
+    
+    while Q is not empty:
+        current_node = dequeue from Q
+        process current_node  // perform desired operation
+        
+        for each neighbor of current_node in graph:
+            if neighbor is not in visited:
+                add neighbor to visited
+                enqueue neighbor into Q
+```
+
+If you need to track distances or reconstruct paths, you can add a distance array or parent pointer tracking:
+
+```
+BFS_with_distance(graph, start_node):
+    create empty queue Q
+    create array distance of size |V| initialized to infinity
+    
+    distance[start_node] = 0
+    enqueue start_node into Q
+    
+    while Q is not empty:
+        current_node = dequeue from Q
+        
+        for each neighbor of current_node in graph:
+            if distance[neighbor] == infinity:
+                distance[neighbor] = distance[current_node] + 1
+                enqueue neighbor into Q
+    
+    return distance
+```
+
+## Key Points to Remember
+
+The visited set is crucial to prevent infinite loops and redundant work—without it, you might revisit nodes indefinitely, especially in graphs with cycles. BFS guarantees the shortest path in unweighted graphs because of its level-by-level exploration pattern. The choice of queue as the data structure is what distinguishes BFS from depth-first search (DFS), which uses a stack instead and explores as deeply as possible before backtracking.

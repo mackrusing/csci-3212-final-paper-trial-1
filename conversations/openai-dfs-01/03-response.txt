@@ -1,0 +1,80 @@
+Sure! Here is a clear example of how **DFS traverses a graph**, including:
+
+1. A simple example graph
+2. A visual representation
+3. The exact DFS visit order (recursive DFS)
+
+---
+
+# ��️ Example Graph
+
+Let’s build a graph with **7 nodes (0–6)**.
+
+### **Adjacency List**
+
+```
+0: 1, 2
+1: 3, 4
+2: 5
+3: 6
+4: (none)
+5: (none)
+6: (none)
+```
+
+---
+
+# �� Visual Representation
+
+```
+        0
+       / \
+      1   2
+     / \   \
+    3   4   5
+    |
+    6
+```
+
+---
+
+# �� DFS Traversal (Starting from Node 0)
+
+Using recursive DFS, we follow the rule:
+
+> “Go as deep as possible before backtracking.”
+
+### Step-by-step visit sequence:
+
+1. Start at **0**
+2. Go to **1**
+3. Go to **3**
+4. Go to **6**
+
+   * 6 has no unvisited neighbors → backtrack to 3
+5. Back to **1**, visit **4**
+6. Backtrack to **0**
+7. Visit **2**
+8. Visit **5**
+
+---
+
+# ✅ Final DFS Visit Order
+
+```
+0 → 1 → 3 → 6 → 4 → 2 → 5
+```
+
+---
+
+# �� If you'd like…
+
+I can also generate:
+
+* The **iterative DFS traversal order**
+* A DFS **tree** explicitly showing parent/child relationships
+* A version where you choose the graph
+* A visualization with colors / step numbers
+* Code that prints the DFS order
+
+Just tell me what you'd like to see next!

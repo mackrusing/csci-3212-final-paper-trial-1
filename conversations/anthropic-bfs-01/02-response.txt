@@ -1,0 +1,22 @@
+I'll provide you with a complete Java implementation of the BFS algorithm with multiple variations to help you understand different use cases.I've created a comprehensive Java implementation of BFS with several useful variations:
+
+## Key Components
+
+**Graph Representation**: The code uses an adjacency list representation with an array of `LinkedList` objects, which is efficient for sparse graphs and makes it easy to iterate through neighbors.
+
+**Basic BFS**: The `bfs()` method performs a standard traversal, printing nodes in the order they're visited. It uses a boolean array to track visited nodes and a queue for the frontier.
+
+**Distance Tracking**: The `bfsWithDistance()` method computes the shortest distance from the start node to all reachable nodes, storing distances in an array initialized to -1 (representing unreachable nodes).
+
+**Shortest Path**: The `shortestPath()` method finds the actual path between two nodes by maintaining a parent array during traversal, then reconstructing the path by backtracking from the destination.
+
+**Level-Order Traversal**: The `bfsLevelOrder()` method demonstrates how to process nodes level by level, which is useful when you need to know the depth of each node.
+
+## Important Implementation Details
+
+- The `Queue<Integer>` interface with `LinkedList` implementation provides the FIFO behavior needed for BFS
+- Using `poll()` instead of `remove()` prevents exceptions on empty queues
+- The visited array prevents cycles and ensures O(V + E) time complexity
+- For the shortest path, we check if a path exists before reconstruction
+
+You can modify the graph structure in the `main()` method to test different scenarios. Try adding more edges, creating disconnected components, or testing on larger graphs!

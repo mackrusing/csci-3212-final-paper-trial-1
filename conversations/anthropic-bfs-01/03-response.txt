@@ -1,0 +1,28 @@
+I've created an interactive visualization that shows exactly how BFS traverses a graph! Here's what you can see:
+
+## How to Use It
+
+- **Play/Pause**: Watch the automatic step-by-step traversal
+- **Next**: Manually advance one step at a time
+- **Reset**: Start over from the beginning
+
+## What to Observe
+
+**Color Coding**:
+- **Gray nodes**: Not yet visited
+- **Red node**: Currently being processed (dequeued)
+- **Green nodes**: Already visited
+
+**Queue Contents**: Shows which nodes are waiting to be processed in FIFO order
+
+**Visit Order**: Shows the sequence in which nodes are discovered (0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8)
+
+## Key Insights from the Visualization
+
+Notice how BFS explores the graph in "layers" or "levels":
+- **Level 0**: Node 0 (start)
+- **Level 1**: Nodes 1 and 2 (neighbors of 0)
+- **Level 2**: Nodes 3, 4, 5, 6 (neighbors of level 1)
+- **Level 3**: Nodes 7, 8 (neighbors of level 2)
+
+The queue ensures that all nodes at distance *d* are processed before any node at distance *d+1*. Watch how nodes 1 and 2 are both added to the queue before either is processed, and how their children (3, 4, 5, 6) are all added before processing any of them!

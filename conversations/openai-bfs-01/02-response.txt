@@ -1,0 +1,135 @@
+Here is a clean, complete **Java implementation of BFS**, including:
+
+* BFS traversal
+* BFS shortest-path reconstruction
+* Example usage
+
+No external libraries are required.
+
+---
+
+# ✅ **Java Implementation of Breadth-First Search (BFS)**
+
+```java
+import java.util.*;
+
+public class BFSExample {
+
+    // Perform a BFS traversal from a starting node
+    public static void bfsTraversal(Map<Integer, List<Integer>> graph, int start) {
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            System.out.println("Visited: " + current);
+
+            for (int neighbor : graph.getOrDefault(current, Collections.emptyList())) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    // BFS to find the shortest path between start and goal
+    public static List<Integer> bfsShortestPath(Map<Integer, List<Integer>> graph, int start, int goal) {
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+        Map<Integer, Integer> parent = new HashMap<>();
+
+        queue.add(start);
+        visited.add(start);
+        parent.put(start, null);
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            if (current == goal) {
+                return constructPath(parent, goal);
+            }
+
+            for (int neighbor : graph.getOrDefault(current, Collections.emptyList())) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    parent.put(neighbor, current);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        return Collections.emptyList(); // no path found
+    }
+
+    private static List<Integer> constructPath(Map<Integer, Integer> parent, int node) {
+        List<Integer> path = new ArrayList<>();
+        while (node != -1 && node != 0 && parent.containsKey(node) || node == 0) {
+            path.add(node);
+            node = parent.get(node);
+            if (node == null) break;
+        }
+        Collections.reverse(path);
+        return path;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        // Example graph represented using adjacency lists
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        graph.put(1, Arrays.asList(2, 3));
+        graph.put(2, Arrays.asList(4, 5));
+        graph.put(3, Arrays.asList(6));
+        graph.put(4, Arrays.asList());
+        graph.put(5, Arrays.asList());
+        graph.put(6, Arrays.asList());
+
+        System.out.println("BFS Traversal starting at node 1:");
+        bfsTraversal(graph, 1);
+
+        System.out.println("\nShortest path from 1 to 6:");
+        List<Integer> path = bfsShortestPath(graph, 1, 6);
+        System.out.println(path);
+    }
+}
+```
+
+---
+
+# ✔️ What This Code Does
+
+### **1. BFS Traversal**
+
+* Uses a `Queue` to process nodes in FIFO order.
+* Uses a `Set` to keep track of visited nodes.
+* Prints nodes in BFS order.
+
+### **2. BFS Shortest Path**
+
+* Records each node’s parent to reconstruct the shortest path.
+* Returns the path as a `List<Integer>`.
+
+### **3. Graph Representation**
+
+* Uses a `Map<Integer, List<Integer>>` adjacency list.
+
+### **4. Example**
+
+Running `main()` performs:
+
+* A BFS traversal from node 1
+* Shortest path calculation from node 1 to node 6
+
+---
+
+If you'd like, I can also provide:
+
+* A version using adjacency matrices
+* A generic BFS that works on any type `T`
+* BFS implemented inside a `Graph` class
+* BFS for grids (like maze solving)
+
+Just tell me!
