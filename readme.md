@@ -1,4 +1,4 @@
-# csci-3212-final-paper-trial-1
+# CSCI 3212 Final Paper Trial 1 Data
 
 This repo contains data from Trial 1 of my CSCI 3212 final paper. See the paper for more info on the methodology.
 
