@@ -1,0 +1,56 @@
+That is an excellent way to visualize how DFS works! Seeing the order of visits makes the "depth-first" strategy very clear.
+
+I will create a sample directed graph and then walk through the Depth-First Search traversal, noting the visit order and demonstrating the process of going deep before backtracking.
+
+---
+
+## 🗺️ Example Graph for DFS Traversal
+
+Consider the following **Directed Graph ($G$)**. The nodes are labeled with letters, and the arrows indicate the direction of the edges (i.e., you can only travel from $A$ to $B$, not $B$ to $A$, unless there is an explicit $B \to A$ edge).
+
+
+
+| Node | Neighbors (Adjacency List) |
+| :--- | :--- |
+| **A** | B, C |
+| **B** | D |
+| **C** | E |
+| **D** | F |
+| **E** | F |
+| **F** | (None) |
+
+---
+
+## 🔎 DFS Traversal Step-by-Step (Starting at Node A)
+
+We will use a stack implicitly (via recursion) to manage the traversal, prioritizing the neighbors in alphabetical order (B before C).
+
+| Step | Current Node | Action | Visited Nodes | Traversal Output Order |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | **A** | Visit A. Choose unvisited neighbor **B**. | {A} | **A** |
+| **2** | **B** | Visit B. Choose unvisited neighbor **D**. | {A, B} | A, **B** |
+| **3** | **D** | Visit D. Choose unvisited neighbor **F**. | {A, B, D} | A, B, **D** |
+| **4** | **F** | Visit F. **F has no neighbors.** | {A, B, D, F} | A, B, D, **F** |
+| **5** | (Backtrack) | F is done. Backtrack to its caller, **D**. | {A, B, D, F} | A, B, D, F |
+| **6** | **D** | D's neighbors (F) are all visited. Backtrack to its caller, **B**. | {A, B, D, F} | A, B, D, F |
+| **7** | **B** | B's neighbors (D) are all visited. Backtrack to its caller, **A**. | {A, B, D, F} | A, B, D, F |
+| **8** | **A** | Check remaining unvisited neighbors of A. Choose **C**. | {A, B, D, F} | A, B, D, F |
+| **9** | **C** | Visit C. Choose unvisited neighbor **E**. | {A, B, D, F, C} | A, B, D, F, **C** |
+| **10** | **E** | Visit E. Check neighbors: F is already **visited**. **No unvisited neighbors.** | {A, B, D, F, C, E} | A, B, D, F, C, **E** |
+| **11** | (Backtrack) | E is done. Backtrack to its caller, **C**. | {A, B, D, F, C, E} | A, B, D, F, C, E |
+| **12** | **C** | C's neighbors (E, F) are all visited. Backtrack to its caller, **A**. | {A, B, D, F, C, E} | A, B, D, F, C, E |
+| **13** | **A** | A's neighbors (B, C) are all visited. Search complete. | {A, B, D, F, C, E} | A, B, D, F, C, E |
+
+---
+
+## 🚀 Final Traversal Order
+
+The final order in which the nodes were visited is:
+
+$$\text{A} \to \text{B} \to \text{D} \to \text{F} \to \text{C} \to \text{E}$$
+
+### Key Takeaway:
+
+Notice how the algorithm goes **deep** from A to B to D to F before **backtracking** to A, and *only then* does it start exploring the next branch (C and E). This is the hallmark of Depth-First Search.
+
+Would you like to see how the order changes if we started the traversal from a different node, or explore the similar visualization for **Breadth-First Search (BFS)** for comparison?

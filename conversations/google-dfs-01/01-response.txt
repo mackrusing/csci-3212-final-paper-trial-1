@@ -1,0 +1,85 @@
+That's a great choice\! Depth-First Search (DFS) is a fundamental and widely used algorithm in computer science, especially for traversing or searching tree and graph data structures.
+
+Here is a comprehensive explanation of the Depth-First Search algorithm, followed by concise pseudocode.
+
+-----
+
+## 🧭 Depth-First Search (DFS) Algorithm
+
+Depth-First Search (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root (in the case of a tree) or an arbitrary node (in the case of a graph) and explores as far as possible along each branch before backtracking.
+
+### 1\. The Core Idea: Depth First
+
+As the name suggests, DFS prioritizes **depth** over **breadth**. When the algorithm visits a node, it immediately attempts to visit one of that node's unvisited neighbors. It continues this process, going deeper and deeper into the structure until it reaches a node that has no unvisited neighbors (a dead end), or until the target is found. Only then does it **backtrack** to the previous node and explore a different branch.
+
+### 2\. Implementation Methods
+
+DFS can be implemented in two main ways:
+
+  * **Recursively:** This is often the most intuitive way to describe and implement DFS. The function calls itself on the next unvisited neighbor, naturally creating the "depth-first" path on the function call stack.
+  * **Iteratively (using a Stack):** A stack data structure is explicitly used to keep track of the nodes to visit. When a node is visited, its unvisited neighbors are pushed onto the stack. Since a stack is Last-In, First-Out (LIFO), the last added neighbor (which represents going "deeper") is the next one processed.
+
+### 3\. Key Data Structures Used
+
+| Structure | Purpose |
+| :--- | :--- |
+| **Graph/Tree** | The data structure being traversed. |
+| **Stack (or Function Call Stack)** | Manages the nodes to visit, ensuring the LIFO (depth-first) order. |
+| **Visited Set/Array** | A collection (e.g., a set or a boolean array) used to track nodes that have already been processed to prevent infinite loops (especially in graphs with cycles) and redundant work. |
+
+### 4\. Step-by-Step Traversal
+
+1.  **Start:** Pick a starting node (let's call it $S$). Mark $S$ as **visited**.
+2.  **Explore Deeply:** Move to an unvisited **neighbor** of $S$. Let's call it $N_1$.
+3.  **Repeat:** Now, starting from $N_1$, repeat step 2. That is, find an unvisited neighbor of $N_1$, move to it, and mark it visited.
+4.  **Dead End/Backtrack:** Continue this process until you reach a node $D$ that has **no unvisited neighbors**.
+5.  **Backtracking:** "Backtrack" to the immediately preceding node (the one that called the current function or was last popped from the stack) and check if it has any *other* unvisited neighbors.
+6.  **Complete:** The algorithm terminates when the starting node $S$ has been completely visited (i.e., all nodes reachable from $S$ have been visited and processed).
+
+### 5\. Applications of DFS
+
+DFS is used for many computational tasks, including:
+
+  * **Finding connected components** in a graph.
+  * **Topological sorting** (finding a linear ordering of nodes in a directed acyclic graph).
+  * **Detecting cycles** in a graph.
+  * **Solving puzzles** (like mazes) by following one path until the end.
+  * **Pathfinding** (e.g., finding a path between two nodes).
+
+-----
+
+## 💻 Pseudocode for Depth-First Search (Recursive)
+
+The recursive implementation is often the cleanest for explaining the depth-first concept. This pseudocode assumes you have a `Graph` structure, an `Adjacency List` to store connections, and a way to keep track of `Visited` nodes.
+
+```pseudocode
+FUNCTION DFS_Recursive(Node, Visited)
+    // 1. Process the current node and mark it as visited
+    PRINT Node.Value
+    Add Node to Visited set
+
+    // 2. Iterate through all neighbors of the current node
+    FOR EACH Neighbor IN Node.Neighbors DO
+        // 3. If the neighbor has not been visited, recurse on it
+        IF Neighbor IS NOT IN Visited THEN
+            DFS_Recursive(Neighbor, Visited)
+        END IF
+    END FOR
+END FUNCTION
+
+// Main routine to start the search
+FUNCTION DFS_Start(Graph, StartNode)
+    Visited = EMPTY SET
+    DFS_Recursive(StartNode, Visited)
+END FUNCTION
+```
+
+### Explanation of Pseudocode:
+
+  * The `DFS_Recursive` function starts by visiting and processing the current `Node`.
+  * It then iterates through all the node's neighbors.
+  * The crucial step is the `IF` condition: it only proceeds to call itself (`DFS_Recursive`) on a neighbor if that neighbor is **unvisited**. This recursive call is what drives the algorithm *deeper* before the `FOR` loop continues to the next sibling neighbor (the backtracking phase).
+
+-----
+
+Would you like to see the **Iterative Pseudocode (using a Stack)** for comparison, or perhaps explore an example of DFS in a specific application like **topological sorting**?

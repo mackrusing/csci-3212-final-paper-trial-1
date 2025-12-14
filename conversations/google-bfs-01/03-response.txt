@@ -1,0 +1,57 @@
+That's a fantastic way to visualize the algorithm! Seeing the step-by-step traversal order makes the concept of level-by-level exploration very clear.
+
+Here is an example graph, followed by a step-by-step walkthrough of the Breadth-First Search (BFS) traversal order.
+
+---
+
+## 🗺️ Example Graph Structure
+
+Let's define a simple, directed graph to demonstrate the traversal. We will start the BFS from **Node A**.
+
+**The Nodes (Vertices):** A, B, C, D, E, F, G
+
+**The Connections (Edges):**
+* A is connected to: B, C
+* B is connected to: D, E
+* C is connected to: F
+* D is connected to: G
+* E is connected to: F
+* F is connected to: G
+* G has no outgoing connections.
+
+
+
+---
+
+## 👣 Step-by-Step BFS Traversal (Starting at A)
+
+We will track the state of the **Queue** and the set of **Visited** nodes at each step to clearly show the level-by-level processing.
+
+| Step | Current Node Dequeued | Neighbors (in alphabetical order) | Visited Nodes (Set) | Queue State (Front -> Back) | Traversal Order |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **0** | (Start) | | $\{\}$ | $[A]$ | **A** |
+| **1** | $\mathbf{A}$ | **B**, **C** | $\{A, B, C\}$ | $[B, C]$ | **A** |
+| **2** | $\mathbf{B}$ | **D**, **E** | $\{A, B, C, D, E\}$ | $[C, D, E]$ | **A, B** |
+| **3** | $\mathbf{C}$ | F | $\{A, B, C, D, E, F\}$ | $[D, E, F]$ | **A, B, C** |
+| **4** | $\mathbf{D}$ | **G** | $\{A, B, C, D, E, F, G\}$ | $[E, F, G]$ | **A, B, C, D** |
+| **5** | $\mathbf{E}$ | F (Already Visited) | $\{A, B, C, D, E, F, G\}$ | $[F, G]$ | **A, B, C, D, E** |
+| **6** | $\mathbf{F}$ | G (Already Visited) | $\{A, B, C, D, E, F, G\}$ | $[G]$ | **A, B, C, D, E, F** |
+| **7** | $\mathbf{G}$ | (None) | $\{A, B, C, D, E, F, G\}$ | $[]$ | **A, B, C, D, E, F, G** |
+
+### Summary of Traversal Order by Level
+
+Notice how the nodes are explored by their distance (number of edges) from the starting node A:
+
+* **Level 0 (Distance 0):** **A**
+* **Level 1 (Distance 1):** **B, C** (The neighbors of A)
+* **Level 2 (Distance 2):** **D, E, F** (The neighbors of B and C)
+* **Level 3 (Distance 3):** **G** (The neighbors of D and F)
+
+### Final BFS Traversal Order
+
+The final order in which the nodes are visited is:
+$$\mathbf{A} \rightarrow \mathbf{B} \rightarrow \mathbf{C} \rightarrow \mathbf{D} \rightarrow \mathbf{E} \rightarrow \mathbf{F} \rightarrow \mathbf{G}$$
+
+---
+
+Do you want to compare this result with the traversal order you would get using Depth-First Search (DFS) on the same graph?

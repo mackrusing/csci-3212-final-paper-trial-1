@@ -1,0 +1,1 @@
+I am a computer science student learning about algorithms. I want to learn about the depth-first search algorithm. Can you give me a comprehensive explanation of this algorithm? Also, can you provide concise pseudocode to outline how this algorithm would be implemented? Please make sure to write pseudocode, not actual code.

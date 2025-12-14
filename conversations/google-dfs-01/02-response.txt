@@ -1,0 +1,139 @@
+That's a logical next step\! Translating the recursive pseudocode into a concrete programming language like Java helps solidify your understanding.
+
+Here is a complete Java implementation of the recursive Depth-First Search algorithm for a graph, using an adjacency list representation.
+
+## ☕ Java Implementation of Depth-First Search (DFS)
+
+This implementation uses two main classes: `Graph` to represent the structure and manage the adjacency lists, and `DFS` to contain the traversal logic.
+
+### 1\. The `Graph` Class
+
+This class sets up the graph structure using a `HashMap` where the keys are the nodes (integers) and the values are `LinkedLists` of their neighbors.
+
+```java
+import java.util.*;
+
+class Graph {
+    // Adjacency List: Key is the node, Value is a list of its neighbors.
+    private Map<Integer, LinkedList<Integer>> adj;
+
+    public Graph(int V) {
+        adj = new HashMap<>();
+        // Initialize the adjacency list for each vertex
+        for (int i = 0; i < V; i++) {
+            adj.put(i, new LinkedList<>());
+        }
+    }
+
+    // Function to add an edge to the graph (assuming undirected)
+    public void addEdge(int v, int w) {
+        // Add w to v's list
+        adj.get(v).add(w);
+        // If the graph is undirected, add v to w's list as well
+        // For a simple directed graph, you would remove the line below.
+        adj.get(w).add(v);
+    }
+
+    // Getter for the adjacency list
+    public Map<Integer, LinkedList<Integer>> getAdj() {
+        return adj;
+    }
+}
+```
+
+### 2\. The `DFS` Implementation
+
+This class contains the recursive DFS method, mirroring the pseudocode you requested.
+
+```java
+class DFS {
+
+    /**
+     * The recursive function that performs the Depth-First Search.
+     * @param v The current vertex being visited.
+     * @param visited A Set to keep track of visited vertices.
+     * @param adj The adjacency list of the graph.
+     */
+    private void dfsRecursive(int v, Set<Integer> visited, Map<Integer, LinkedList<Integer>> adj) {
+        // 1. Mark the current node as visited and print it
+        visited.add(v);
+        System.out.print(v + " ");
+
+        // 2. Iterate through all neighbors of the current node
+        LinkedList<Integer> neighbors = adj.get(v);
+
+        // Handle case where a node might be isolated (no neighbors)
+        if (neighbors != null) {
+            for (Integer neighbor : neighbors) {
+                // 3. If the neighbor has not been visited, recurse on it
+                if (!visited.contains(neighbor)) {
+                    dfsRecursive(neighbor, visited, adj);
+                }
+            }
+        }
+    }
+
+    /**
+     * The main entry point for the DFS traversal.
+     * @param graph The Graph object to traverse.
+     * @param startNode The starting node for the search.
+     */
+    public void traverse(Graph graph, int startNode) {
+        // A Set is the best data structure for 'Visited' as it provides
+        // fast O(1) average time complexity for the 'contains' check.
+        Set<Integer> visited = new HashSet<>();
+
+        System.out.println("Depth-First Traversal starting from node " + startNode + ":");
+        dfsRecursive(startNode, visited, graph.getAdj());
+        System.out.println("\nTraversal complete.");
+    }
+}
+```
+
+### 3\. Main Method (Example Usage)
+
+This `main` method demonstrates how to create a graph and run the DFS traversal.
+
+```java
+public class DFSExample {
+    public static void main(String[] args) {
+        // Create a graph with 5 vertices (0, 1, 2, 3, 4)
+        Graph g = new Graph(5);
+
+        // Add edges:
+        // 0 -- 1
+        // 0 -- 2
+        // 1 -- 3
+        // 2 -- 4
+        // 3 -- 4 (This creates a cycle 1-3-4-2-0-1 in the full graph)
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 3);
+        g.addEdge(2, 4);
+        g.addEdge(3, 4);
+
+        // Create an instance of the DFS class
+        DFS dfsSearch = new DFS();
+
+        // Start the traversal from node 0
+        dfsSearch.traverse(g, 0);
+
+        /*
+        Expected Output (The order may vary slightly based on the HashMap
+        iteration, but the depth-first property will hold):
+
+        Depth-First Traversal starting from node 0:
+        0 1 3 4 2
+        Traversal complete.
+        */
+    }
+}
+```
+
+### Summary of Key Java Concepts Used:
+
+  * **`HashMap<Integer, LinkedList<Integer>>`:** Used as the **Adjacency List** for an efficient graph representation.
+  * **`HashSet<Integer>`:** Used for the `visited` set. This is ideal because checking if a node has been visited (`visited.contains(v)`) is very fast (average $O(1)$ time complexity).
+  * **Recursion:** The `dfsRecursive` method calls itself, which automatically manages the stack necessary for the depth-first nature of the search.
+
+Do you have another algorithm you'd like to explore, or would you like to see how to implement the **Iterative DFS** using an explicit `Stack` in Java?

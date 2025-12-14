@@ -11,4 +11,4 @@ Full-text excerpts of the conversations can be found in the `conversations` dire
 
 Each numbered prompt corresponds to one response with the same number and any number of optional artifacts.
 
-Conversations labeled `openai` are with OpenAi's ChatGPT-5.1, those labeled `anthropic` are with Anthropic's Claude Sonnet 4.5.
+Conversations labeled `openai` are with OpenAi's ChatGPT-5.1, `anthropic` are with Anthropic's Claude Sonnet 4.5, and `google` are with Google's Gemini 2.5 Flash.
