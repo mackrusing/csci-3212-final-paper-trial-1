@@ -11,4 +11,11 @@ Full-text excerpts of the conversations can be found in the `conversations` dire
 
 Each numbered prompt corresponds to one response with the same number and any number of optional artifacts.
 
-Conversations labeled `openai` are with OpenAi's ChatGPT-5.1, `anthropic` are with Anthropic's Claude Sonnet 4.5, and `google` are with Google's Gemini 2.5 Flash.
+## Conversations Index
+
+- `anthropic-bfs-01`: Claude Sonnet 4.5, [Public Conversation](https://claude.ai/share/e708e1ca-bbc3-42cc-b698-155e8909592e), 2025-12-07
+- `anthropic-dfs-01`: Claude Sonnet 4.5, [Public Conversation](https://claude.ai/share/6a6def9d-81d5-42a8-9451-3223a7450305), 2025-12-07
+- `google-bfs-01`: Google Gemini 2.5 Flash, [Public Conversation](https://gemini.google.com/share/5360ada769ec), 2025-12-14
+- `google-dfs-01`: Google Gemini 2.5 Flash, [Public Conversation](https://gemini.google.com/share/4c799539ba55), 2025-12-14
+- `openai-dfs-01`: ChatGPT-5.1, [Public Conversation](https://chatgpt.com/share/6935e9e7-ae10-8008-8176-3f2f32e4b7b6), 2025-12-07
+- `openai-bfs-01`: ChatGPT-5.1, [Public Conversation](https://chatgpt.com/share/692d0232-1354-8008-89b5-4ce55d7a5231), 2025-11-30
